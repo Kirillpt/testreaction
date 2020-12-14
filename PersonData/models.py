@@ -5,10 +5,14 @@ class Person(models.Model):
         ('M', 'Man'),
         ('F', 'Female'),
     ]
+    TEST_VARIANT = [
+        ("E", "Electro"),
+        ("C", "Computer"),
+    ]
     name = models.CharField("ФИО", default="anonimous", max_length=40)
     gender = models.CharField("Пол", max_length=1, choices=GENDER_CHOICE)
     age = models.IntegerField("Возраст")
     react_time = models.IntegerField("Время Реакции")
-    date = models.DateTimeField("Дата и Время Регистрации");
+    test_variant = models.CharField("Вариант Теста",default="E", max_length=30, choices=TEST_VARIANT) 
     e_voltage = models.FloatField("Напряжение", blank=True, default=0)
 
