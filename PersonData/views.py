@@ -20,19 +20,19 @@ class ChartData(APIView):
         for e in Person.objects.all():
             age = e.age
             if age < 10:
-                items[0] += e.time
+                items[0] += e.react_time
                 cnt_items[0] += 1
             elif age >= 10 and age <= 12:
-                items[1] += e.time
+                items[1] += e.react_time
                 cnt_items[1] += 1
             elif age >= 13 and age <= 14:
-                items[2] += e.time
+                items[2] += e.react_time
                 cnt_items[2] += 1
             elif age >= 15 and age <= 17:
-                items[3] += e.time
+                items[3] += e.react_time
                 cnt_items[3] += 1
             elif age > 17:
-                items[4] += e.time
+                items[4] += e.react_time
                 cnt_items[4] += 1
         for i in range(0, 4):
             if cnt_items[i] == 0:
