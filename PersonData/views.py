@@ -25,8 +25,10 @@ class ChartData(APIView):
         g = 1 # gender
         for e in Person.objects.all():
             age = e.age
-            if e.gender == "Male":
+            if e.gender == "M":
                 g = 2
+            else:
+                g = 1
             if age < 10:
                 items[g][0] += e.react_time
                 cnt_items[g][0] += 1
