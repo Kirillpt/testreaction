@@ -105,6 +105,7 @@ class ChartData(APIView):
         items = [0, 0, 0, 0, 0] # all react_time
         cnt_items = [0, 0, 0, 0, 0] # all react_time
         for e in Person.objects.filter(test_variant=var):
+            age = e.age
             if age < 10:
                 items[0] += e.react_time
                 cnt_items[0] += 1
@@ -128,17 +129,18 @@ class ChartData(APIView):
 
     def get_computer(self):
         items = []
-        items.append(self.get_variant(""))
-        items.append(self.get_variant(""))
-        items.append(self.get_variant(""))
-        items.append(self.get_variant(""))
-        items.append(self.get_variant(""))
+        items.append(self.get_variant("V"))
+        items.append(self.get_variant("S"))
+        items.append(self.get_variant("M"))
+        items.append(self.get_variant("PP"))
+        items.append(self.get_variant("PR"))
         return items
 
     def get(self, request, format=None):
         labels = ["<10", "10-12", "13-14", "15-17", ">17"]
         itemsElectro = self.get_electro()
-#        itemsComputer = self.get_computer()
+        itemsComputer = self.get_computer()
+        cnt = Person.objects.all().count()
         data = {
                 "labels": labels,
                 "rall":  itemsElectro[0],
@@ -147,13 +149,14 @@ class ChartData(APIView):
                 "vall":  itemsElectro[3],
                 "vfemale": itemsElectro[4],
                 "vmale": itemsElectro[5],
-        }
-        return Response(data)
-
-"""
                 "call1":  itemsComputer[0],
                 "call2":  itemsComputer[1],
                 "call3":  itemsComputer[2],
                 "call4":  itemsComputer[3],
                 "call5":  itemsComputer[4],
+                "cnt": cnt,
+        }
+        return Response(data)
+
+"""
 """

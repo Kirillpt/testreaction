@@ -8,6 +8,11 @@ class Person(models.Model):
     TEST_VARIANT = [
         ("E", "Electro"),
         ("C", "Computer"),
+        ("V", "Vibration"),
+        ("S", "StereoSound"),
+        ("M", "MonoSound"),
+        ("PP", "PicturePress"),
+        ("PR", "PictureRelease"),
     ]
     name = models.CharField("ФИО", default="anonimous", max_length=40)
     gender = models.CharField("Пол", max_length=1, choices=GENDER_CHOICE)

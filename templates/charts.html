@@ -15,11 +15,13 @@ var call2 = [0,0,0,0,0]
 var call3 = [0,0,0,0,0]
 var call4 = [0,0,0,0,0]
 var call5 = [0,0,0,0,0]
+var cnt = 0
 $.ajax({
     method: "GET",
     url: endpoint,
     success: function(data){
         labels = data.labels
+        cnt = data.cnt
         rallData = data.rall
         rfemaleData = data.rfemale
         rmaleData = data.rmale
@@ -27,6 +29,12 @@ $.ajax({
         vallData = data.vall
         vfemaleData = data.vfemale
         vmaleData = data.vmale
+        
+        call1 = data.call1
+        call2 = data.call2
+        call3 = data.call3
+        call4 = data.call4
+        call5 = data.call5
 
         setChart()
     },
@@ -37,6 +45,8 @@ $.ajax({
 })
 
 function setChart(){
+    document.getElementById('cnt').innerHTML =
+    "На базе Гимназии 29 в рамках подготовки к нпк были проведены тестирования на определение времени реакции и болевого порога среди учащихся и учителей.<br><br>На данный момент протестировано "+cnt+" человек разного возраста и пола.<br> Диаграммы отображают среднее время реакции в разных половозрастных группах"
     var ctx = document.getElementById("allChart");
     var ctx1 = document.getElementById("femaleChart");
     var ctx2 = document.getElementById("maleChart");
@@ -147,7 +157,7 @@ function setChart(){
       data: {
           labels: labels,
           datasets: [{
-              label: 'Среднee время реакции()',
+              label: 'Среднee время реакции(Vibration)',
               data: call1,
               backgroundColor: bgc, 
               borderColor: bdc, 
@@ -160,7 +170,7 @@ function setChart(){
       data: {
           labels: labels,
           datasets: [{
-              label: 'Среднee время реакции()',
+              label: 'Среднee время реакции(Stereo Sound)',
               data: call2,
               backgroundColor: bgc, 
               borderColor: bdc, 
@@ -173,7 +183,7 @@ function setChart(){
       data: {
           labels: labels,
           datasets: [{
-              label: 'Среднee время реакции()',
+              label: 'Среднee время реакции(Mono Sound)',
               data: call3,
               backgroundColor: bgc, 
               borderColor: bdc, 
@@ -186,7 +196,7 @@ function setChart(){
       data: {
           labels: labels,
           datasets: [{
-              label: 'Среднee время реакции()',
+              label: 'Среднee время реакции(Picture Press)',
               data: call4,
               backgroundColor: bgc, 
               borderColor: bdc, 
@@ -199,7 +209,7 @@ function setChart(){
       data: {
           labels: labels,
           datasets: [{
-              label: 'Среднee время реакции()',
+              label: 'Среднee время реакции(Picture Release)',
               data: call5,
               backgroundColor: bgc, 
               borderColor: bdc, 
@@ -217,12 +227,7 @@ function setChart(){
 
 <div class="row justify-content-md-center">
   <div class='col-sm-12'>
-    <h3>
-        На базе Гимназии 29 в рамках подготовки к нпк были проведены тестирования на определение времени реакции и болевого порога
-        среди учащихся и учителей.<br><br>
-        На данный момент протестировано n человек разного возраста и пола.<br>
-        Диаграммы отображают среднее время реакции 
-        в разных половозрастных группах
+    <h3 id="cnt">
     </h3>
     <br>
   </div>
