@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from PersonData.views import HomeView, ChartData
 
 
@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^api/chart/data/$', ChartData.as_view()),
     url(r'^admin/', admin.site.urls),
+    path('' , include('PersonData.urls')),
 ]

@@ -4,7 +4,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import render
 from PersonData.models import Person
+from .serializers import PersonSerializer
+from rest_framework import viewsets
 
+class PersonViewSet(viewsets.ModelViewSet):
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer
 
 class HomeView(View):
     def get(self, request, *args, **kwargs):
@@ -13,8 +18,7 @@ class HomeView(View):
 class ChartData(APIView):
     authentication_classes = []
     permission_classes = []
-
-    def get_items(self):
+    def get_electro(self):
         items = [[0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0]]
@@ -23,7 +27,7 @@ class ChartData(APIView):
                     [0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0]]
         g = 1 # gender
-        for e in Person.objects.all():
+        for e in Person.objects.filter(test_variant="E"):
             age = e.age
             if e.gender == "M":
                 g = 2
@@ -62,12 +66,12 @@ class ChartData(APIView):
         return items
     def get(self, request, format=None):
         labels = ["<10", "10-12", "13-14", "15-17", ">17"]
-        default_items = self.get_items() 
+        itemsElectro = self.get_electro()
         data = {
                 "labels": labels,
-                "default": default_items[0],
-                "default1": default_items[1],
-                "default2": default_items[2],
+                "all":  itemsElectro[0],
+                "female": itemsElectro[1],
+                "male": itemsElectro[2],
         }
         return Response(data)
 

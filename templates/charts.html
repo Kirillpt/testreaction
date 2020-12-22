@@ -3,18 +3,18 @@
 <script>
 {% block jquery %}
 var endpoint = '/api/chart/data/'
-var defaultData = []
-var defaultData1 = []
-var defaultData2 = []
+var allData = []
+var femaleData = []
+var maleData = []
 var labels = [];
 $.ajax({
     method: "GET",
     url: endpoint,
     success: function(data){
         labels = data.labels
-        defaultData = data.default
-        defaultData1 = data.default1
-        defaultData2 = data.default2
+        allData = data.all
+        femaleData = data.female
+        maleData = data.male
         setChart()
     },
     error: function(error_data){
@@ -24,16 +24,16 @@ $.ajax({
 })
 
 function setChart(){
-    var ctx = document.getElementById("myChart");
-    var ctx1 = document.getElementById("myChart1");
-    var ctx2 = document.getElementById("myChart2");
+    var ctx = document.getElementById("allChart");
+    var ctx1 = document.getElementById("femaleChart");
+    var ctx2 = document.getElementById("maleChart");
     var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
           labels: labels,
           datasets: [{
               label: 'Среднее Время Реакции',
-              data: defaultData,
+              data: allData,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -69,7 +69,7 @@ function setChart(){
           labels: labels,
           datasets: [{
               label: 'Среднее Время Реакции(Девочки)',
-              data: defaultData1,
+              data: femaleData,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -105,7 +105,7 @@ function setChart(){
           labels: labels,
           datasets: [{
               label: 'Среднее Время Реакции(Мальчики)',
-              data: defaultData2,
+              data: maleData,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -147,21 +147,25 @@ function setChart(){
   <div class='col-sm-12'>
     <h3>
         На базе Гимназии 29 в рамках подготовки к нпк были проведены тестирования на определение времени реакции и болевого порога
-        среди учащихся и учителей. На данный момент протестировано n человек разного возраста и пола. Диаграммы отображают среднее время реакции 
+        среди учащихся и учителей.<br><br>
+        На данный момент протестировано n человек разного возраста и пола.<br>
+        Диаграммы отображают среднее время реакции 
         в разных половозрастных группах
     </h3>
+    <br>
   </div>
 </div>
+
 <div class='col'>
   <div class="row justify-content-md-center">
         <div class='col-sm-5'>
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <canvas id="allChart" width="400" height="400"></canvas>
         </div>
         <div class='col-sm-5'>
-            <canvas id="myChart1" width="400" height="400"></canvas>
+            <canvas id="femaleChart" width="400" height="400"></canvas>
         </div>
         <div class='col-sm-5'>
-            <canvas id="myChart2" width="400" height="400"></canvas>
+            <canvas id="maleChart" width="400" height="400"></canvas>
         </div>
 </div>
 <div class='col-sm-12'>
