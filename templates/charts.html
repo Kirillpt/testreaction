@@ -3,18 +3,26 @@
 <script>
 {% block jquery %}
 var endpoint = '/api/chart/data/'
-var allData = []
-var femaleData = []
-var maleData = []
+var rallData = []
+var rfemaleData = []
+var rmaleData = []
+var vallData = []
+var vfemaleData = []
+var vmaleData = []
 var labels = [];
 $.ajax({
     method: "GET",
     url: endpoint,
     success: function(data){
         labels = data.labels
-        allData = data.all
-        femaleData = data.female
-        maleData = data.male
+        rallData = data.rall
+        rfemaleData = data.rfemale
+        rmaleData = data.rmale
+
+        vallData = data.vall
+        vfemaleData = data.vfemale
+        vmaleData = data.vmale
+
         setChart()
     },
     error: function(error_data){
@@ -27,13 +35,16 @@ function setChart(){
     var ctx = document.getElementById("allChart");
     var ctx1 = document.getElementById("femaleChart");
     var ctx2 = document.getElementById("maleChart");
+    var ctx3 = document.getElementById("vallChart");
+    var ctx4 = document.getElementById("vfemaleChart");
+    var ctx5 = document.getElementById("vmaleChart");
     var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
           labels: labels,
           datasets: [{
               label: 'Среднее Время Реакции',
-              data: allData,
+              data: rallData,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -69,7 +80,7 @@ function setChart(){
           labels: labels,
           datasets: [{
               label: 'Среднее Время Реакции(Девочки)',
-              data: femaleData,
+              data: rfemaleData,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -105,7 +116,115 @@ function setChart(){
           labels: labels,
           datasets: [{
               label: 'Среднее Время Реакции(Мальчики)',
-              data: maleData,
+              data: rmaleData,
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  });
+    var myChart = new Chart(ctx3, {
+      type: 'bar',
+      data: {
+          labels: labels,
+          datasets: [{
+              label: 'Средний порог болевой чувствительности',
+              data: vallData,
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  });
+    var myChart1 = new Chart(ctx4, {
+      type: 'bar',
+      data: {
+          labels: labels,
+          datasets: [{
+              label: 'Средний порог болевой чувствительности(Девочки)',
+              data: vfemaleData,
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  });
+    var myChart2 = new Chart(ctx5, {
+      type: 'bar',
+      data: {
+          labels: labels,
+          datasets: [{
+              label: 'Средний порог болевой чувствительности(Мальчики)',
+              data: vmaleData,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -166,6 +285,15 @@ function setChart(){
         </div>
         <div class='col-sm-5'>
             <canvas id="maleChart" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-5'>
+            <canvas id="vallChart" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-5'>
+            <canvas id="vfemaleChart" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-5'>
+            <canvas id="vmaleChart" width="400" height="400"></canvas>
         </div>
 </div>
 <div class='col-sm-12'>
