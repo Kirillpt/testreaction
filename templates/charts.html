@@ -143,20 +143,31 @@ function setChart(){
 
 {% block content %}
 
-<div class='row'>
-      <h1>Графики</h1>
-      <div class='col-sm-12'>
-        <div class='col-sm-6'>
+<div class="row justify-content-md-center">
+  <div class='col-sm-12'>
+    <h3>
+        На базе Гимназии 29 в рамках подготовки к нпк были проведены тестирования на определение времени реакции и болевого порога
+        среди учащихся и учителей. На данный момент протестировано n человек разного возраста и пола. Диаграммы отображают среднее время реакции 
+        в разных половозрастных группах
+    </h3>
+  </div>
+</div>
+<div class='col'>
+  <div class="row justify-content-md-center">
+        <div class='col-sm-5'>
             <canvas id="myChart" width="400" height="400"></canvas>
         </div>
-        <div class='col-sm-6'>
+        <div class='col-sm-5'>
             <canvas id="myChart1" width="400" height="400"></canvas>
         </div>
-      </div>
-      <div class='col-sm-6'>
-          <canvas id="myChart2" width="400" height="400"></canvas>
-      </div>
-
+        <div class='col-sm-5'>
+            <canvas id="myChart2" width="400" height="400"></canvas>
+        </div>
+</div>
+<div class='col-sm-12'>
+  <h3>
+    Контакты: punisherpete@gmail.com
+  </h3>
 </div>
 
 {% endblock content %}
