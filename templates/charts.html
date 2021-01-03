@@ -74,6 +74,28 @@ function setChart(){
                   'rgba(153, 102, 255, 1)',
                   'rgba(255, 159, 64, 1)'
               ]
+       options={ 
+    scales: {
+      yAxes: [{
+        ticks: {
+          min: 100,
+          max:120,
+          stepSize: 1,
+        }
+      }]
+    }
+  };
+       options1={ 
+    scales: {
+      yAxes: [{
+        ticks: {
+          min: 200,
+          max:250,
+          stepSize: 5,
+        }
+      }]
+    }
+  };
     var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -86,6 +108,7 @@ function setChart(){
               borderWidth: 1
           }]
       },
+      options: options,
   });
     var myChart1 = new Chart(ctx1, {
       type: 'bar',
@@ -99,6 +122,7 @@ function setChart(){
               borderWidth: 1
           }]
       },
+      options: options,
   });
     var myChart2 = new Chart(ctx2, {
       type: 'bar',
@@ -112,6 +136,7 @@ function setChart(){
               borderWidth: 1
           }]
       },
+      options: options,
   });
     var myChart3 = new Chart(ctx3, {
       type: 'bar',
@@ -125,6 +150,7 @@ function setChart(){
               borderWidth: 1
           }]
       },
+      options: options,
   });
     var myChart4 = new Chart(ctx4, {
       type: 'bar',
@@ -138,6 +164,7 @@ function setChart(){
               borderWidth: 1
           }]
       },
+      options: options,
   });
     var myChart5 = new Chart(ctx5, {
       type: 'bar',
@@ -151,6 +178,7 @@ function setChart(){
               borderWidth: 1
           }]
       },
+      options: options,
   });
     var myChart6 = new Chart(ctx6, {
       type: 'bar',
@@ -164,6 +192,7 @@ function setChart(){
               borderWidth: 1
           }]
       },
+      options: options1,
   });
     var myChart7 = new Chart(ctx7, {
       type: 'bar',
@@ -177,6 +206,7 @@ function setChart(){
               borderWidth: 1
           }]
       },
+      options: options1,
   });
     var myChart8 = new Chart(ctx8, {
       type: 'bar',
@@ -190,6 +220,7 @@ function setChart(){
               borderWidth: 1
           }]
       },
+      options: options1,
   });
     var myChart9 = new Chart(ctx9, {
       type: 'bar',
@@ -203,6 +234,7 @@ function setChart(){
               borderWidth: 1
           }]
       },
+      options: options1,
   });
     var myChart10 = new Chart(ctx10, {
       type: 'bar',
@@ -216,6 +248,7 @@ function setChart(){
               borderWidth: 1
           }]
       },
+      options: options1,
   });
 
 }
