@@ -7,7 +7,6 @@ class Person(models.Model):
     ]
     TEST_VARIANT = [
         ("E", "Electro"),
-        ("C", "Computer"),
         ("V", "Vibration"),
         ("SR", "StereoSoundRight"),
         ("SL", "StereoSoundLeft"),
