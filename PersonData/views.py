@@ -130,10 +130,11 @@ class ChartData(APIView):
     def get_computer(self):
         items = []
         items.append(self.get_variant("V"))
-        items.append(self.get_variant("S"))
+        items.append(self.get_variant("SL"))
         items.append(self.get_variant("M"))
         items.append(self.get_variant("PP"))
         items.append(self.get_variant("PR"))
+        items.append(self.get_variant("SR"))
         return items
 
     def get(self, request, format=None):
@@ -154,6 +155,7 @@ class ChartData(APIView):
                 "call3":  itemsComputer[2],
                 "call4":  itemsComputer[3],
                 "call5":  itemsComputer[4],
+                "call21":  itemsComputer[5],
                 "cnt": cnt,
         }
         return Response(data)

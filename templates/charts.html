@@ -15,6 +15,7 @@ var call2 = [0,0,0,0,0]
 var call3 = [0,0,0,0,0]
 var call4 = [0,0,0,0,0]
 var call5 = [0,0,0,0,0]
+var call21 = [0,0,0,0,0]
 var cnt = 0
 $.ajax({
     method: "GET",
@@ -35,6 +36,7 @@ $.ajax({
         call3 = data.call3
         call4 = data.call4
         call5 = data.call5
+        call21 = data.call21
 
         setChart()
     },
@@ -55,6 +57,7 @@ function setChart(){
     var ctx5 = document.getElementById("vmaleChart");
     var ctx6 = document.getElementById("call1");
     var ctx7 = document.getElementById("call2");
+    var ctx71 = document.getElementById("call21");
     var ctx8 = document.getElementById("call3");
     var ctx9 = document.getElementById("call4");
     var ctx10 = document.getElementById("call5");
@@ -199,8 +202,22 @@ function setChart(){
       data: {
           labels: labels,
           datasets: [{
-              label: 'Среднee время реакции(Stereo Sound)',
+              label: 'Среднee время реакции для левого уха(Stereo Sound)',
               data: call2,
+              backgroundColor: bgc, 
+              borderColor: bdc, 
+              borderWidth: 1
+          }]
+      },
+      options: options1,
+  });
+    var myChart71 = new Chart(ctx71, {
+      type: 'bar',
+      data: {
+          labels: labels,
+          datasets: [{
+              label: 'Среднee время реакции для правого уха(Stereo Sound)',
+              data: call21,
               backgroundColor: bgc, 
               borderColor: bdc, 
               borderWidth: 1
@@ -268,37 +285,40 @@ function setChart(){
 
 <div class='col'>
   <div class="row justify-content-md-center">
-        <div class='col-sm-5'>
+        <div class='col-sm-6'>
             <canvas id="allChart" width="400" height="400"></canvas>
         </div>
-        <div class='col-sm-5'>
+        <div class='col-sm-6'>
             <canvas id="femaleChart" width="400" height="400"></canvas>
         </div>
-        <div class='col-sm-5'>
+        <div class='col-sm-6'>
             <canvas id="maleChart" width="400" height="400"></canvas>
         </div>
-        <div class='col-sm-5'>
+        <div class='col-sm-6'>
             <canvas id="vallChart" width="400" height="400"></canvas>
         </div>
-        <div class='col-sm-5'>
+        <div class='col-sm-6'>
             <canvas id="vfemaleChart" width="400" height="400"></canvas>
         </div>
-        <div class='col-sm-5'>
+        <div class='col-sm-6'>
             <canvas id="vmaleChart" width="400" height="400"></canvas>
         </div>
-        <div class='col-sm-5'>
+        <div class='col-sm-6'>
             <canvas id="call1" width="400" height="400"></canvas>
         </div>
-        <div class='col-sm-5'>
+        <div class='col-sm-6'>
             <canvas id="call2" width="400" height="400"></canvas>
         </div>
-        <div class='col-sm-5'>
+        <div class='col-sm-6'>
+            <canvas id="call21" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
             <canvas id="call3" width="400" height="400"></canvas>
         </div>
-        <div class='col-sm-5'>
+        <div class='col-sm-6'>
             <canvas id="call4" width="400" height="400"></canvas>
         </div>
-        <div class='col-sm-5'>
+        <div class='col-sm-6'>
             <canvas id="call5" width="400" height="400"></canvas>
         </div>
 </div>
