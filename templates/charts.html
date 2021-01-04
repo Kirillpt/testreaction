@@ -99,6 +99,17 @@ function setChart(){
       }]
     }
   };
+       optionsSound={ 
+    scales: {
+      yAxes: [{
+        ticks: {
+          min: 200,
+          max: 350,
+          stepSize: 10,
+        }
+      }]
+    }
+  };
     var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -209,7 +220,7 @@ function setChart(){
               borderWidth: 1
           }]
       },
-      options: options1,
+      options: options2,
   });
     var myChart71 = new Chart(ctx71, {
       type: 'bar',
@@ -223,7 +234,7 @@ function setChart(){
               borderWidth: 1
           }]
       },
-      options: options1,
+      options: options2,
   });
     var myChart8 = new Chart(ctx8, {
       type: 'bar',
@@ -237,7 +248,7 @@ function setChart(){
               borderWidth: 1
           }]
       },
-      options: options1,
+      options: optionsSound,
   });
     var myChart9 = new Chart(ctx9, {
       type: 'bar',
