@@ -60,7 +60,7 @@ def getJson(request, tv, age):
             data.append(d)
     dsp = calcError(data)
     avg = calcAvarage(data)
-    return JsonResponse({'avg': avg, 'error': dsp}, safe=False)
+    return JsonResponse({'avg': avg, 'deviation': dsp}, safe=False)
 
 class ChartData(APIView):
     authentication_classes = []
