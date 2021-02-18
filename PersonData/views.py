@@ -6,6 +6,11 @@ from django.shortcuts import render
 from PersonData.models import Person
 from .serializers import PersonSerializer
 from rest_framework import viewsets
+from rest_framework.decorators import api_view
+import math as m
+from django.http.response import JsonResponse
+from rest_framework.parsers import JSONParser 
+
 
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
@@ -14,6 +19,38 @@ class PersonViewSet(viewsets.ModelViewSet):
 class HomeView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'charts.html')
+
+
+def calcAvarage(tv, age):
+    data = Person.objects.filter(test_variant=tv).filter(age=age)
+    cnt = 0
+    sum = 0
+    for d in data:
+        sum += d.react_time
+        cnt += 1
+    if cnt != 0:
+        sum /= cnt
+    return sum
+
+def calcError(tv, age):
+    avg = calcAvarage(tv, age)
+    data = Person.objects.filter(test_variant=tv).filter(age=age)
+    dsp = 0
+    cnt = 0
+    for d in data:
+        dsp += (d.react_time - avg) ** 2
+        cnt += 1;
+    if cnt != 0:
+        dsp /= cnt;
+    dsp = m.sqrt(dsp)
+    return dsp
+
+@api_view(['GET'])
+def getJson(request, tv, age):
+    data = Person.objects.filter(test_variant=tv).filter(age=age)
+    dsp = calcError(tv, age)
+    avg = calcAvarage(tv, age)
+    return JsonResponse({'avg': avg, 'error': dsp}, safe=False)
 
 class ChartData(APIView):
     authentication_classes = []

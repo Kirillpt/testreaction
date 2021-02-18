@@ -17,11 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 from PersonData.views import HomeView, ChartData
+from PersonData import views
 
 
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^api/chart/data/$', ChartData.as_view()),
+    path('api/<tv>/<int:age>', views.getJson),
     url(r'^admin/', admin.site.urls),
     path('' , include('PersonData.urls')),
 ]
