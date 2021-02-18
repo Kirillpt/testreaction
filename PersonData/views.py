@@ -21,8 +21,7 @@ class HomeView(View):
         return render(request, 'charts.html')
 
 
-def calcAvarage(tv, age):
-    data = Person.objects.filter(test_variant=tv).filter(age=age)
+def calcAvarage(data):
     cnt = 0
     sum = 0
     for d in data:
@@ -32,9 +31,8 @@ def calcAvarage(tv, age):
         sum /= cnt
     return sum
 
-def calcError(tv, age):
-    avg = calcAvarage(tv, age)
-    data = Person.objects.filter(test_variant=tv).filter(age=age)
+def calcError(data):
+    avg = calcAvarage(data)
     dsp = 0
     cnt = 0
     for d in data:
@@ -47,9 +45,21 @@ def calcError(tv, age):
 
 @api_view(['GET'])
 def getJson(request, tv, age):
-    data = Person.objects.filter(test_variant=tv).filter(age=age)
-    dsp = calcError(tv, age)
-    avg = calcAvarage(tv, age)
+    allObj = Person.objects.filter(test_variant=tv)
+    data = []
+    for d in allObj:
+        if age < 10 and d.age < 10:
+            data.append(d)
+        elif age >= 10 and d.age >= 10 and age <= 12 and d.age <= 12: 
+            data.append(d)
+        elif age >= 13 and d.age >= 13 and age <= 14 and d.age <= 14: 
+            data.append(d)
+        elif age >= 15 and d.age >= 15 and age <= 17 and d.age <= 17: 
+            data.append(d)
+        elif age > 17 and d.age > 17:
+            data.append(d)
+    dsp = calcError(data)
+    avg = calcAvarage(data)
     return JsonResponse({'avg': avg, 'error': dsp}, safe=False)
 
 class ChartData(APIView):
@@ -196,6 +206,3 @@ class ChartData(APIView):
                 "cnt": cnt,
         }
         return Response(data)
-
-"""
-"""
