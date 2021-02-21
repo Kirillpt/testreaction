@@ -50,13 +50,25 @@ def getJson(request, tv, age):
     for d in allObj:
         if age < 10 and d.age < 10:
             data.append(d)
-        elif age >= 10 and d.age >= 10 and age <= 12 and d.age <= 12: 
+        elif age >= 10 and d.age >= 10 and age <= 16 and d.age <= 16:
             data.append(d)
-        elif age >= 13 and d.age >= 13 and age <= 14 and d.age <= 14: 
+        elif age >= 17 and d.age >= 17 and age <= 20 and d.age <= 20:
             data.append(d)
-        elif age >= 15 and d.age >= 15 and age <= 17 and d.age <= 17: 
+        elif age >= 21 and d.age >= 21 and age <= 30 and d.age <= 30:
             data.append(d)
-        elif age > 17 and d.age > 17:
+        elif age >= 31 and d.age >= 31 and age <= 40 and d.age <= 40:
+            data.append(d)
+        elif age >= 41 and d.age >= 41 and age <= 50 and d.age <= 50:
+            data.append(d)
+        elif age >= 51 and d.age >= 51 and age <= 60 and d.age <= 60:
+            data.append(d)
+        elif age >= 61 and d.age >= 61 and age <= 70 and d.age <= 70:
+            data.append(d)
+        elif age >= 71 and d.age >= 71 and age <= 80 and d.age <= 80:
+            data.append(d)
+        elif age >= 81 and d.age >= 81 and age <= 90 and d.age <= 90:
+            data.append(d)
+        else:
             data.append(d)
     dsp = calcError(data)
     avg = calcAvarage(data)
